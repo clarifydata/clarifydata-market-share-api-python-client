@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="plz-api",
-    packages=["plz-service-api-wrapper"],
+    name="plzwrapper",
+    packages=["plzwrapper"],
     install_requires=["requests"],
 )
