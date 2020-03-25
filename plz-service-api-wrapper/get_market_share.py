@@ -3,8 +3,8 @@ import json
 import requests
 
 
-HOST_PORT = "http://127.0.0.1:5000"
-API_ENDPOINT = "v1/plz_to_market_share"
+BASE_PATH = "http://127.0.0.1:5000/api"
+MARKET_SHARE_ENDPOINT = "v1/plz_to_market_share"
 
 
 def get_market_shares(type, plz_with_cust_amounts):
@@ -16,7 +16,7 @@ def get_market_shares(type, plz_with_cust_amounts):
     as keys and corresponding customer amounts as values
     :return: dictionary with PLZ as keys and calculated market share as values
     """
-    url = f"{HOST_PORT}/{API_ENDPOINT}/{type}"
+    url = f"{BASE_PATH}/{MARKET_SHARE_ENDPOINT}/{type}"
     data = json.dumps(plz_with_cust_amounts)
     response = requests.post(
         url, data=data, headers={"content-type": "application/json"}
