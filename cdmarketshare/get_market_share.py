@@ -36,4 +36,16 @@ def get_market_share(
             "accept": "application/json",
         },
     )
-    return json.loads(response.content)
+    if _is_valid_response(response):
+        return json.loads(response.content)
+    else:
+        return None
+
+
+def _is_valid_response(response):
+    cont_type = response.headers.get("Content-Type", None)
+    if cont_type != "application/json":
+        return False
+    if response.status_code != 200:
+        return False
+    return True
