@@ -44,7 +44,7 @@ def get_market_share(
 
 def _is_valid_response(response):
     cont_type = response.headers.get("Content-Type", None)
-    if cont_type != "application/json":
+    if cont_type != 'application/json':
         return False
     if response.status_code != 200:
         return False
