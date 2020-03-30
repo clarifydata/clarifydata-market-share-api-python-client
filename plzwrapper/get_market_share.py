@@ -4,7 +4,7 @@ import requests
 
 
 BASE_PATH = "http://127.0.0.1:5000/api"
-MARKET_SHARE_ENDPOINT = "v1/plz_to_market_share"
+MARKET_SHARE_ENDPOINT = "v1/market_share"
 
 
 def get_market_shares(type, plz_with_cust_amounts):
