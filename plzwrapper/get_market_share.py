@@ -19,7 +19,7 @@ def get_market_shares(type, plz_with_cust_amounts, gfk_weight=0):
     """
     url = f"{BASE_PATH}/{MARKET_SHARE_ENDPOINT}/{type}"
     if gfk_weight != 0:
-        url = f"{url}?gfk_weight={gfk_weight}"
+        url += f"?gfk_weight={gfk_weight}"
     data = json.dumps(plz_with_cust_amounts)
     response = requests.post(
         url, data=data, headers={"content-type": "application/json"}
