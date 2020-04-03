@@ -11,7 +11,10 @@ Wrap calls to Clarifydata Market Share REST endpoints.
     ```shell
     $ pip install clarifydata-market-share-api-python-client
     ```
-- import as `clarifydata`
+- import:
+    ```python3
+    >>> import cdmarketshares
+    ```
 
 ## Development
 - Install dependencies with [pipenv](https://pipenv.pypa.io/en/latest/):
