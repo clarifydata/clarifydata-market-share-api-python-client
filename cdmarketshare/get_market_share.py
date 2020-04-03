@@ -29,7 +29,3 @@ def get_market_share(
         url, data=data, headers={"content-type": "application/json"}
     )
     return json.loads(response.content)
-
-
-if __name__ == '__main__':
-    print(get_market_shares("Strom", {"49080": 12}, host="127.0.0.1:5000"))
