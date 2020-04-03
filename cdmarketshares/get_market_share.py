@@ -8,7 +8,7 @@ def get_market_shares(
     plz_with_cust_amounts,
     gfk_weight=0,
     base_path="http://market-share.clarifydata.de",
-    version="1.0",
+    version="v1",
 ):
     """
     Get market share for different categories (Strom, Gas, ...)
@@ -21,7 +21,7 @@ def get_market_shares(
     :param version: specify which version to use
     :return: dictionary with PLZ as keys and calculated market share as values
     """
-    url = f"{base_path}/{version}/'market_share'/{sparte_or_category}"
+    url = f"{base_path}/{version}/market_share/{sparte_or_category}"
     if gfk_weight != 0:
         url += f"?gfk_weight={gfk_weight}"
     data = json.dumps(plz_with_cust_amounts)
