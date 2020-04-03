@@ -3,7 +3,7 @@ import json
 import requests
 
 
-def get_market_shares(
+def get_market_share(
     sparte_or_category,
     plz_with_cust_amounts,
     gfk_weight=0,
@@ -29,3 +29,7 @@ def get_market_shares(
         url, data=data, headers={"content-type": "application/json"}
     )
     return json.loads(response.content)
+
+
+if __name__ == '__main__':
+    print(get_market_shares("Strom", {"49080": 12}, host="127.0.0.1:5000"))

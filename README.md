@@ -13,7 +13,7 @@ Wrap calls to Clarifydata Market Share REST endpoints.
     ```
 - import:
     ```python3
-    >>> import cdmarketshares
+    >>> import cdmarketshare
     ```
 
 ## Development
