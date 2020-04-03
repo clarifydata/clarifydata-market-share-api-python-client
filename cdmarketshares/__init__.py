@@ -1,1 +1,1 @@
-from clarifydata_market_shares_api_client.get_market_share import get_market_shares
+from cdmarketshares.get_market_share import get_market_shares

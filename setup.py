@@ -6,7 +6,7 @@ setup(
     description="Clarifydata Market Shares API Client",
     url="https://github.com/clarifydata/clarifydata-market-share-api-python-client",
     author="clarifydata GmbH",
-    packages=["clarifydataapiclient"],
+    packages=["cdmarketshares"],
     install_requires=[
         "certifi==2019.11.28",
         "chardet==3.0.4",
