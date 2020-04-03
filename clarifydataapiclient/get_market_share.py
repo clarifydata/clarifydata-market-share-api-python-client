@@ -3,12 +3,13 @@ import json
 import requests
 
 
-BASE_PATH = "http://market-share.clarifydata.de"
-VERSION = "v1"
-MARKET_SHARE_ENDPOINT = "market_share"
-
-
-def get_market_shares(type, plz_with_cust_amounts, gfk_weight=0):
+def get_market_shares(
+    sparte_or_category,
+    plz_with_cust_amounts,
+    gfk_weight=0,
+    base_path="http://market-share.clarifydata.de",
+    version="1.0",
+):
     """
     Get market share for different categories (Strom, Gas, ...)
     and "Sparten" (Energie, Tel)
@@ -16,9 +17,11 @@ def get_market_shares(type, plz_with_cust_amounts, gfk_weight=0):
     :param plz_with_cust_amounts: Dictionary containing PLZ
     as keys and corresponding customer amounts as values
     :param gfk_weight: weight of gfk data in calculated results
+    :param base_path: path to the API
+    :param version: specify which version to use
     :return: dictionary with PLZ as keys and calculated market share as values
     """
-    url = f"{BASE_PATH}/{VERSION}/{MARKET_SHARE_ENDPOINT}/{type}"
+    url = f"{base_path}/{version}/'market_share'/{type}"
     if gfk_weight != 0:
         url += f"?gfk_weight={gfk_weight}"
     data = json.dumps(plz_with_cust_amounts)
