@@ -3,8 +3,9 @@ import json
 import requests
 
 
-BASE_PATH = "http://127.0.0.1:5000/api"
-MARKET_SHARE_ENDPOINT = "v1/market_share"
+BASE_PATH = "http://market-share.clarifydata.de"
+VERSION = "v1"
+MARKET_SHARE_ENDPOINT = "market_share"
 
 
 def get_market_shares(type, plz_with_cust_amounts, gfk_weight=0):
@@ -17,7 +18,7 @@ def get_market_shares(type, plz_with_cust_amounts, gfk_weight=0):
     :param gfk_weight: weight of gfk data in calculated results
     :return: dictionary with PLZ as keys and calculated market share as values
     """
-    url = f"{BASE_PATH}/{MARKET_SHARE_ENDPOINT}/{type}"
+    url = f"{BASE_PATH}/{VERSION}/{MARKET_SHARE_ENDPOINT}/{type}"
     if gfk_weight != 0:
         url += f"?gfk_weight={gfk_weight}"
     data = json.dumps(plz_with_cust_amounts)
