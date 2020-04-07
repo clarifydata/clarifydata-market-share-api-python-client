@@ -24,6 +24,8 @@ def get_market_share(
     url = f"http://{host}/{version}/market_share/{sparte_or_category}"
     if gfk_weight != 0:
         url += f"?gfk_weight={gfk_weight}"
+    if not isinstance(plz_with_cust_amounts, dict):
+        plz_with_cust_amounts = {}
     data = json.dumps(plz_with_cust_amounts)
     response = requests.post(
         url, data=data, headers={"content-type": "application/json"}
