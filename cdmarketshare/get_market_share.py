@@ -28,6 +28,10 @@ def get_market_share(
     response = requests.post(
         url,
         data=data,
-        headers={"content-type": "application/json", "accept": "application/json"},
+        headers={
+            "content-type": "application/json",
+            "user-agent": "clarifydata-market-share-api-python-client",
+            "accept": "application/json",
+        },
     )
     return json.loads(response.content)
