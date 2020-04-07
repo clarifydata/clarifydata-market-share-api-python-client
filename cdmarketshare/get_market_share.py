@@ -26,6 +26,8 @@ def get_market_share(
         url += f"?gfk_weight={gfk_weight}"
     data = json.dumps(plz_with_cust_amounts)
     response = requests.post(
-        url, data=data, headers={"content-type": "application/json"}
+        url,
+        data=data,
+        headers={"content-type": "application/json", "accept": "application/json"},
     )
     return json.loads(response.content)
