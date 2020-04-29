@@ -9,18 +9,19 @@ Wrap calls to Clarifydata Market Share REST endpoints.
     ```
 - install with `pip`
     ```shell
-    $ pip install clarifydata-market-share-api-python-client
+    $ cd clarifydata-market-share-api-python-client
+    $ pip install .
     ```
-  
+
 ## Usage
 ```python3
 >>> import cdmarketshare
 >>> market_share = cdmarketshare.get_market_share(
-        "Strom", 
+        "Strom",
         {<some_postcode>: <some_customer_amount>}
     )
 ```
-  
+
 
 ## Development
 - Install dependencies with [pipenv](https://pipenv.pypa.io/en/latest/):
