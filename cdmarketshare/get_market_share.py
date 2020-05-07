@@ -7,6 +7,7 @@ def get_market_share(
     sparte_or_category,
     postcodes_with_cust_amounts,
     gfk_weight=0,
+    gas_avail_default_factor=0.5,
     host="market-share.clarifydata.de",
     version="v1",
 ):
@@ -17,6 +18,8 @@ def get_market_share(
     :param postcodes_with_cust_amounts: Dictionary containing postcodes
     as keys and corresponding customer amounts as values
     :param gfk_weight: weight of gfk data in calculated results
+    :param gas_avail_default_factor: factor of available gas connections relative to
+    electricity connections
     :param host: path to the API
     :param version: specify which version to use
     :return: dictionary with PLZ as keys and calculated market share as values
@@ -24,6 +27,8 @@ def get_market_share(
     url = f"http://{host}/{version}/market_share/{sparte_or_category}"
     if gfk_weight != 0:
         url += f"?gfk_weight={gfk_weight}"
+    if gas_avail_default_factor != 0.5:
+        url += f"?gas_avail_default_factor={gas_avail_default_factor}"
     if not isinstance(postcodes_with_cust_amounts, dict):
         postcodes_with_cust_amounts = {}
     data = json.dumps(postcodes_with_cust_amounts)
