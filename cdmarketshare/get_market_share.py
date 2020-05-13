@@ -24,16 +24,19 @@ def get_market_share(
     :param version: specify which version to use
     :return: dictionary with PLZ as keys and calculated market share as values
     """
-    url = f"http://{host}/{version}/market_share/{sparte_or_category}"
-    if gfk_weight != 0:
-        url += f"?gfk_weight={gfk_weight}"
-    if gas_avail_default_factor != 0.5:
-        url += f"?gas_avail_default_factor={gas_avail_default_factor}"
-    if not isinstance(postcodes_with_cust_amounts, dict):
-        postcodes_with_cust_amounts = {}
+    base_url = f"http://{host}/{version}/market_share/{sparte_or_category}"
+    params = {
+        "gfk_weight": gfk_weight,
+        "gas_avail_default_factor": gas_avail_default_factor,
+    }
+    return _get_response(postcodes_with_cust_amounts, base_url, params)
+
+
+def _get_response(postcodes_with_cust_amounts, base_url, params=None):
     data = json.dumps(postcodes_with_cust_amounts)
     response = requests.post(
-        url,
+        base_url,
+        params=params,
         data=data,
         headers={
             "content-type": "application/json",
@@ -49,7 +52,7 @@ def get_market_share(
 
 def _is_valid_response(response):
     cont_type = response.headers.get("Content-Type", None)
-    if cont_type != 'application/json':
+    if cont_type != "application/json":
         return False
     if response.status_code != 200:
         return False
