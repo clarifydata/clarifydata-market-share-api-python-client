@@ -1,6 +1,9 @@
 import json
+import time
 
 import requests
+
+MAX_RETRIES = 10
 
 
 def get_market_share(
@@ -29,7 +32,18 @@ def get_market_share(
         "gfk_weight": gfk_weight,
         "gas_avail_default_factor": gas_avail_default_factor,
     }
-    return _get_response(postcodes_with_cust_amounts, base_url, params)
+    return _get_response_with_retry(postcodes_with_cust_amounts, base_url, params)
+
+
+def _get_response_with_retry(postcodes_with_cust_amounts, base_url, params):
+    market_share = None
+    for i in range(MAX_RETRIES):
+        market_share = _get_response(postcodes_with_cust_amounts, base_url, params)
+        if market_share is not None:
+            break
+        elif i < (MAX_RETRIES - 1):
+            time.sleep(60)
+    return market_share
 
 
 def _get_response(postcodes_with_cust_amounts, base_url, params=None):
