@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="clarifydata-market-share-python-api-client",
-    version="1.0.1",
+    version="1.1.1",
     description="Clarifydata Market Shares API Client",
     url="https://github.com/clarifydata/clarifydata-market-share-api-python-client",
     author="clarifydata GmbH",
