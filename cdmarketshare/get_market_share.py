@@ -1,5 +1,6 @@
 import json
 import time
+from typing import Dict, List
 
 import requests
 
@@ -33,6 +34,25 @@ def get_market_share(
         "gas_avail_default_factor": gas_avail_default_factor,
     }
     return _get_response_with_retry(postcodes_with_cust_amounts, base_url, params)
+
+
+def get_household_count(
+    postcodes_data: Dict[str, List[str]],
+    gfk_weight=0,
+    host="market-share.clarifydata.de",
+    version="v1",
+):
+    """
+    Get household count for given postcodes
+    :param postcodes_data: {"plz": [<list of postcodes>]}
+    :param gfk_weight: weight of GfK data, must be in [0, 1]
+    :param host: path to the API
+    :param version: specify which version to use
+    :return: dictionary with PLZ as keys and household count as values
+    """
+    base_url = f"http://{host}/{version}/household_count"
+    params = {"gfk_weight": gfk_weight}
+    return _get_response_with_retry(postcodes_data, base_url, params)
 
 
 def _get_response_with_retry(postcodes_with_cust_amounts, base_url, params):
