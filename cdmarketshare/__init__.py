@@ -1,1 +1,1 @@
-from cdmarketshare.get_market_share import get_market_share
+from cdmarketshare.get_market_share import get_household_count, get_market_share
