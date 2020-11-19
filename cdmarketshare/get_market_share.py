@@ -6,13 +6,15 @@ import requests
 
 MAX_RETRIES = 10
 
+DEFAULT_API_URL = "https://postcode.services.clarifydata.de"
+
 
 def get_market_share(
     sparte_or_category,
     postcodes_with_cust_amounts,
     gfk_weight=0,
     gas_avail_default_factor=0.5,
-    host="market-share.clarifydata.de",
+    api_url=DEFAULT_API_URL,
     version="v1",
 ):
     """
@@ -28,18 +30,18 @@ def get_market_share(
     :param version: specify which version to use
     :return: dictionary with PLZ as keys and calculated market share as values
     """
-    base_url = f"http://{host}/{version}/market_share/{sparte_or_category}"
+    query_url = f"{api_url}/{version}/market_share/{sparte_or_category}"
     params = {
         "gfk_weight": gfk_weight,
         "gas_avail_default_factor": gas_avail_default_factor,
     }
-    return _get_response_with_retry(postcodes_with_cust_amounts, base_url, params)
+    return _get_response_with_retry(postcodes_with_cust_amounts, query_url, params)
 
 
 def get_household_count(
     postcodes_data: Dict[str, List[str]],
     gfk_weight=0,
-    host="market-share.clarifydata.de",
+    api_url=DEFAULT_API_URL,
     version="v1",
 ):
     """
@@ -50,9 +52,9 @@ def get_household_count(
     :param version: specify which version to use
     :return: dictionary with PLZ as keys and household count as values
     """
-    base_url = f"http://{host}/{version}/household_count"
+    query_url = f"{api_url}/{version}/household_count"
     params = {"gfk_weight": gfk_weight}
-    return _get_response_with_retry(postcodes_data, base_url, params)
+    return _get_response_with_retry(postcodes_data, query_url, params)
 
 
 def _get_response_with_retry(postcodes_with_cust_amounts, base_url, params):
